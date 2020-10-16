@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+
+#company_id {
+ display: none;
+}
+</style>
+</head>
+<body>
+
+<h2>HTML Table</h2>
+
+<table id="mytable">
+  <tr class="row">
+    <th class="company" id="myCompany">Company</th>
+    <th class="contact">Contact</th>
+    <th class="item3">Country</th>
+  </tr>
+  <tr class="row">
+    <td class="company">Alfreds Futterkiste</td>
+    <td class="contact">Maria Anders</td>
+    <td class="country">Germany</td>
+  </tr>
+  <tr class="row">
+    <td class="company">Centro comercial Moctezuma</td>
+    <td class="contact">Francisco Chang</td>
+    <td class="country">Mexico</td>
+  </tr>
+  <tr class="row">
+    <td class="company">Ernst Handel</td>
+    <td class="contact">Roland Mendel</td>
+    <td class="country">Austria</td>
+  </tr>
+  <tr class="row">
+    <td class="company">Island Trading</td>
+    <td class="contact">Helen Bennett</td>
+    <td class="country">UK</td>
+  </tr>
+  <tr class="row">
+    <td class="company">Laughing Bacchus Winecellars</td>
+    <td class="contact">Yoshi Tannamuri</td>
+    <td class="country">Canada</td>
+  </tr>
+  <tr class="row">
+    <td class="company">Magazzini Alimentari Riuniti</td>
+    <td class="contact">Giovanni Rovelli</td>
+    <td class="country">Italy</td>
+  </tr>
+</table>
+<select onchange="the_table.company_hide()" id="options" style="margin-bottom:100px;">
+<option value="Show All" selected="selected">Show All</option>
+<option value="Company" id="company_option">Company</option>
+<option value="Contact">Contact</option>
+<option value="Country">Country</option>
+<option value="Hide All" style="background-colro:red;">Hide All</option>
+</select>
+
+
+<button id="demo" onclick="the_table.company_hide()">Click</button>
+<script>
+const get_table = document.getElementById("mytable");
+const get_button = document.getElementById("demo");
+
+const get_options = document.getElementById("options");
+
+const rows = document.querySelectorAll(".row");
+let companyid = document.getElementById("company_id");
+
+let company_option = document.getElementById("company_option");
+let index_company = 0;
+alert(company_option.value);
+get_options.addEventListener("click", (event) => {
+  if (get_options.selectedIndex == 1 ) {
+    
+    if ( index_company == 1 ) {
+       index_company = 0;
+       console.log('hide the country');
+       companyid.style.display = 'none';
+    } else {
+       alert('Show the country');
+       index_company = 1;
+       companyid.style.display = 'block';
+    }
+    //alert(index_company);
+  }
+  
+
+});
+  
+ 
+  
+const the_table = {
+  get_byid : get_table,
+  all_rows : rows,
+  controlers: () => {
+    let controlers = document.getElementById("options");
+    return controlers;
+  },
+  company : () => {
+    let company = document.querySelectorAll(".company");
+    return company;
+  },
+  contact : () => {
+    let contact = document.querySelectorAll(".contact");
+    return contact;
+  },
+  country : () => {
+    let country = document.querySelectorAll(".country");
+    return country;
+  },
+  company_hide : () => {
+
+      // public function
+           //alert(the_table.controlers().selectedIndex);
+          if (the_table.controlers().selectedIndex == 1 && companyid) {
+              alert('yes');
+          }
+
+  }
+
+}
+
+</script>
+</body>
+</html>
