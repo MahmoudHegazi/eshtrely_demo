@@ -31,7 +31,7 @@ tr:nth-child(even) {
   <tr class="row">
     <th class="company" id="myCompany">Company</th>
     <th class="contact">Contact</th>
-    <th class="item3">Country</th>
+    <th class="country">Country</th>
   </tr>
   <tr class="row">
     <td class="company">Alfreds Futterkiste</td>
@@ -66,9 +66,12 @@ tr:nth-child(even) {
 </table>
 <select onchange="the_table.company_hide()" id="options" style="margin-bottom:100px;">
 <option value="Show All" selected="selected">Show All</option>
-<option value="Company" id="company_option">Company</option>
-<option value="Contact">Contact</option>
-<option value="Country">Country</option>
+<option value="hide Company" id="company_hide_option">Hide Company</option>
+<option value="show Company" id="company_show_option">Show Company</option>
+<option value="hide Contact" id="contact_hide_option">Hide Contact</option>
+<option value="show Contact" id="contact_show_option">Show Contact</option>
+<option value="hide Country" id="country_hide_option">Hide Country</option>
+<option value="show Country" id="country_show_option">Show Country</option>
 <option value="Hide All" style="background-colro:red;">Hide All</option>
 </select>
 
@@ -83,24 +86,74 @@ const get_options = document.getElementById("options");
 const rows = document.querySelectorAll(".row");
 let companyid = document.getElementById("company_id");
 
-let company_option = document.getElementById("company_option");
+
+
+
+// options 
+let hide_company = document.getElementById("company_hide_option");
+let show_company = document.getElementById("company_show_option");
+
+let hide_contact = document.getElementById("contact_hide_option");
+let show_contact = document.getElementById("contact_show_option");
+
+let hide_country = document.getElementById("country_hide_option");
+let show_country = document.getElementById("country_show_option");
+
+
+
 let index_company = 0;
-alert(company_option.value);
 get_options.addEventListener("click", (event) => {
-  if (get_options.selectedIndex == 1 ) {
-    
-    if ( index_company == 1 ) {
-       index_company = 0;
-       console.log('hide the country');
-       companyid.style.display = 'none';
-    } else {
-       alert('Show the country');
-       index_company = 1;
-       companyid.style.display = 'block';
-    }
-    //alert(index_company);
-  }
   
+let company_rows = the_table.company();
+let contact_rows = document.querySelectorAll('.contact');
+let country_rows = document.querySelectorAll('.country');
+
+
+
+
+switch (get_options.selectedIndex) {
+  case 0:
+    break;
+  case 1:
+     company_rows.forEach( (row) => { 
+       row.style.display = "none";
+     });
+    break;
+  case 2:     
+     company_rows.forEach( (row) => { 
+       row.style.display = "block";
+     });  
+    break;
+  case 3:
+     contact_rows.forEach( (row) => { 
+       row.style.display = "none";
+     });  
+    break;
+  case 4:
+     contact_rows.forEach( (row) => { 
+       row.style.display = "block";
+     }); 
+    break;
+  case 5:
+     country_rows.forEach( (row) => { 
+       row.style.display = "none";
+     }); 
+    break;
+  case  6:
+     country_rows.forEach( (row) => { 
+       row.style.display = "block";
+     }); 
+    break;
+  case  7:
+    day = "Saturday";
+    break;    
+  case  8:
+    day = "Saturday";
+    break;    
+}
+
+
+
 
 });
   
